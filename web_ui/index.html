@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhaka Building Height Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i data-lucide="building" class="logo-icon"></i>
+                <div class="logo-text">
+                    <span class="logo-title">Dhaka Building</span>
+                    <span class="logo-subtitle">Height Analysis</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <i data-lucide="home"></i><span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="upload">
+                    <i data-lucide="upload-cloud"></i><span>Upload Image</span>
+                </a>
+                <a href="#" class="nav-item" data-page="detection">
+                    <i data-lucide="scan"></i><span>Building Detection</span>
+                </a>
+                <a href="#" class="nav-item" data-page="analysis">
+                    <i data-lucide="bar-chart-2"></i><span>Height Analysis</span>
+                </a>
+                <a href="#" class="nav-item" data-page="map">
+                    <i data-lucide="map"></i><span>Dhaka Map</span>
+                </a>
+                <a href="#" class="nav-item" data-page="reports">
+                    <i data-lucide="file-text"></i><span>Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-page="urban-insights">
+                    <i data-lucide="lightbulb"></i><span>Urban Insights</span>
+                </a>
+                <a href="#" class="nav-item" data-page="about">
+                    <i data-lucide="info"></i><span>About Project</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="project-info">
+                    <i data-lucide="building-2"></i>
+                    <div class="project-text">
+                        <span class="project-label">Project</span>
+                        <span class="project-name">Dhaka City</span>
+                        <span class="project-desc">Building Height Analysis</span>
+                    </div>
+                </div>
+                <div class="copyright">© 2024 All rights reserved.</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="user-profile">
+                    <div class="avatar"><i data-lucide="user"></i></div>
+                    <span class="user-name">Admin</span>
+                    <i data-lucide="chevron-down" class="dropdown-icon"></i>
+                </div>
+            </header>
+
+            <!-- ========== PAGE: Dashboard ========== -->
+            <div class="page active" id="page-dashboard">
+                <div class="content-wrapper">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon blue"><i data-lucide="building"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Buildings</span>
+                                <span class="metric-value" id="m-total">—</span>
+                                <span class="metric-subtitle blue-text">Detected Buildings</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon green"><i data-lucide="home"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Low-rise Buildings</span>
+                                <span class="metric-value green-text" id="m-low">—</span>
+                                <span class="metric-subtitle green-text">(1 – 4 Floors)</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon yellow"><i data-lucide="building-2"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Mid-rise Buildings</span>
+                                <span class="metric-value yellow-text" id="m-mid">—</span>
+                                <span class="metric-subtitle yellow-text">(5 – 12 Floors)</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon red"><i data-lucide="building"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">High-rise Buildings</span>
+                                <span class="metric-value red-text" id="m-high">—</span>
+                                <span class="metric-subtitle red-text">(13+ Floors)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="middle-section">
+                        <div class="upload-container">
+                            <h3>Upload Aerial or Drone Image</h3>
+                            <div class="upload-area" id="drop-zone">
+                                <i data-lucide="cloud-upload" class="upload-icon"></i>
+                                <p id="upload-status-text">Drag and drop your image here, or</p>
+                                <input type="file" id="file-input" hidden accept="image/jpeg, image/png, image/jpg">
+                                <button class="btn-primary" onclick="document.getElementById('file-input').click()">Choose Image</button>
+                                <span class="upload-hint">Supports: JPG, PNG, JPEG (Max size: 20MB)</span>
+                            </div>
+                            <button class="btn-primary full-width" id="analyze-btn">
+                                <i data-lucide="cpu"></i> Analyze Image
+                            </button>
+                        </div>
+                        <div class="instructions-container">
+                            <div class="instructions-header">
+                                <div class="vertical-line"></div>
+                                <h3>How it works</h3>
+                            </div>
+                            <ul class="instructions-list">
+                                <li><div class="icon-circle"><i data-lucide="crosshair"></i></div><span>1. Upload aerial/drone image of Dhaka City</span></li>
+                                <li><div class="icon-circle"><i data-lucide="cpu"></i></div><span>2. AI model detects buildings via YOLO</span></li>
+                                <li><div class="icon-circle"><i data-lucide="bar-chart-2"></i></div><span>3. Building heights are classified</span></li>
+                                <li><div class="icon-circle"><i data-lucide="activity"></i></div><span>4. View results and statistics</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-header"><i data-lucide="image" class="blue-icon"></i><h4>Original Image</h4></div>
+                            <div class="result-image-wrapper"><img src="images/original.jpg" alt="Original" id="result-orig"></div>
+                            <button class="btn-download" onclick="downloadImage('result-orig','original.jpg')"><i data-lucide="download"></i> Download</button>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-header"><i data-lucide="scan" class="blue-icon"></i><h4>Detected Buildings (YOLO)</h4></div>
+                            <div class="result-image-wrapper"><img src="images/detected.jpg" alt="Detected" id="result-detect"></div>
+                            <button class="btn-download" onclick="downloadImage('result-detect','detected.jpg')"><i data-lucide="download"></i> Download</button>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-header"><i data-lucide="bar-chart" class="blue-icon"></i><h4>Height Classification</h4></div>
+                            <div class="result-image-wrapper classification-wrapper">
+                                <img src="images/classification.jpg" alt="Classification" id="result-class">
+                                <div class="legend">
+                                    <div class="legend-item"><div class="legend-color" style="background:#22c55e"></div><div class="legend-text"><span class="legend-title">Low-rise</span><span class="legend-subtitle">(1-4 Floors)</span></div></div>
+                                    <div class="legend-item"><div class="legend-color" style="background:#eab308"></div><div class="legend-text"><span class="legend-title">Mid-rise</span><span class="legend-subtitle">(5-12 Floors)</span></div></div>
+                                    <div class="legend-item"><div class="legend-color" style="background:#ef4444"></div><div class="legend-text"><span class="legend-title">High-rise</span><span class="legend-subtitle">(13+ Floors)</span></div></div>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="downloadImage('result-class','classified.jpg')"><i data-lucide="download"></i> Download</button>
+                        </div>
+                    </div>
+
+                    <!-- ========== SUGGESTION BOX (Below Result Cards) ========== -->
+                    <div class="suggestion-box" id="suggestion-box">
+                        <div class="suggestion-box-header">
+                            <div class="suggestion-box-title">
+                                <i data-lucide="lightbulb"></i>
+                                <h3>Building Height — Benefits &amp; Disadvantages</h3>
+                            </div>
+                            <p class="suggestion-box-subtitle" id="sug-subtitle">Upload and analyze an image to get results based on detected buildings</p>
+
+                            <!-- Dynamic Zone Result Banner (shown after analysis) -->
+                            <div class="sug-result-banner" id="sug-result-banner" style="display:none;">
+                                <div class="srb-inner">
+                                    <div class="srb-left">
+                                        <i data-lucide="scan-line"></i>
+                                        <span id="srb-title">Analysis Result</span>
+                                    </div>
+                                    <div class="srb-counts">
+                                        <span class="srb-count red-bg-soft"><span id="srb-high">0</span> High-rise</span>
+                                        <span class="srb-count yellow-bg-soft"><span id="srb-mid">0</span> Mid-rise</span>
+                                        <span class="srb-count green-bg-soft"><span id="srb-low">0</span> Low-rise</span>
+                                        <span class="srb-count blue-bg-soft"><span id="srb-total">0</span> Total</span>
+                                    </div>
+                                </div>
+                                <p class="srb-recommendation" id="srb-recommendation"></p>
+                            </div>
+
+                            <!-- Tab Buttons -->
+                            <div class="suggestion-tabs">
+                                <button class="stab active" data-target="sug-high" onclick="switchSugTab(this,'sug-high')">
+                                    <span class="stab-dot red-dot"></span> High-rise <span id="tab-cnt-high" class="tab-count-badge" style="display:none;"></span>
+                                </button>
+                                <button class="stab" data-target="sug-med" onclick="switchSugTab(this,'sug-med')">
+                                    <span class="stab-dot yellow-dot"></span> Mid-rise <span id="tab-cnt-med" class="tab-count-badge" style="display:none;"></span>
+                                </button>
+                                <button class="stab" data-target="sug-low" onclick="switchSugTab(this,'sug-low')">
+                                    <span class="stab-dot green-dot"></span> Low-rise <span id="tab-cnt-low" class="tab-count-badge" style="display:none;"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- HIGH-RISE Panel -->
+                        <div class="sug-panel active" id="sug-high">
+                            <div class="sug-panel-inner">
+                                <div class="sug-col sug-benefits">
+                                    <div class="sug-col-header">
+                                        <i data-lucide="check-circle-2"></i>
+                                        <span>Advantages</span>
+                                    </div>
+                                    <ul class="sug-list">
+                                        <li>Maximizes scarce Dhaka land with very high population capacity</li>
+                                        <li>Enables open ground space, public plazas &amp; green setbacks</li>
+                                        <li>Ideal for Transit-Oriented Development (TOD) near MRT stations</li>
+                                        <li>Economies of scale — centralized amenities, solar microgrids &amp; water recycling</li>
+                                        <li>Frees up horizontal land for parks and natural flood-flow buffer zones</li>
+                                        <li>Supports Smart Dhaka 2035 vertical urban growth vision</li>
+                                    </ul>
+                                </div>
+                                <div class="sug-divider"></div>
+                                <div class="sug-col sug-disadv">
+                                    <div class="sug-col-header disadv-header">
+                                        <i data-lucide="x-circle"></i>
+                                        <span>Disadvantages</span>
+                                    </div>
+                                    <ul class="sug-list">
+                                        <li>High seismic &amp; liquefaction risk on Dhaka's alluvial floodplains</li>
+                                        <li>Fire Service skylifts reach max ~20 floors only in Bangladesh</li>
+                                        <li>Narrow Dhaka roads (&lt;20 ft) block emergency vehicle access</li>
+                                        <li>Overburdened WASA water, gas &amp; sewage infrastructure</li>
+                                        <li>Creates Urban Heat Island (UHI) effect &amp; microclimate wind corridors</li>
+                                        <li>Requires expensive deep piling &amp; strict BNBC-2020 seismic compliance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sug-scores">
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🔥 Fire Safety Score</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:40%;background:#ef4444;"></div></div>
+                                    <span class="ssg-pct" style="color:#ef4444;">40%</span>
+                                </div>
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🏗️ Land Efficiency</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:95%;background:#3b82f6;"></div></div>
+                                    <span class="ssg-pct" style="color:#3b82f6;">95%</span>
+                                </div>
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🌿 Livability Score</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:55%;background:#8b5cf6;"></div></div>
+                                    <span class="ssg-pct" style="color:#8b5cf6;">55%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MID-RISE Panel -->
+                        <div class="sug-panel" id="sug-med">
+                            <div class="sug-panel-inner">
+                                <div class="sug-col sug-benefits">
+                                    <div class="sug-col-header">
+                                        <i data-lucide="check-circle-2"></i>
+                                        <span>Advantages</span>
+                                    </div>
+                                    <ul class="sug-list">
+                                        <li>Optimal balance of density &amp; manageable infrastructure load</li>
+                                        <li>Fully within Bangladesh Fire Service standard ladder reach</li>
+                                        <li>Affordable concrete frame construction without deep piling</li>
+                                        <li>Fosters social cohesion, community identity &amp; human-scale streets</li>
+                                        <li>Aligned with RAJUK DAP regulations for 20–30 ft road widths</li>
+                                        <li>Suitable for mixed residential-commercial use in secondary zones</li>
+                                    </ul>
+                                </div>
+                                <div class="sug-divider"></div>
+                                <div class="sug-col sug-disadv">
+                                    <div class="sug-col-header disadv-header">
+                                        <i data-lucide="x-circle"></i>
+                                        <span>Disadvantages</span>
+                                    </div>
+                                    <ul class="sug-list">
+                                        <li>Urban sprawl pressure if unchecked across low-density zones</li>
+                                        <li>Wall-to-wall clustering eliminates natural sunlight &amp; cross-ventilation</li>
+                                        <li>Elevator dependency &amp; parking bottlenecks on narrow plots</li>
+                                        <li>Insufficient alone to meet Dhaka's 21M+ population housing demand</li>
+                                        <li>Requires careful road-width planning to prevent traffic gridlock</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sug-scores">
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🔥 Fire Safety Score</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:75%;background:#eab308;"></div></div>
+                                    <span class="ssg-pct" style="color:#eab308;">75%</span>
+                                </div>
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🏗️ Land Efficiency</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:60%;background:#3b82f6;"></div></div>
+                                    <span class="ssg-pct" style="color:#3b82f6;">60%</span>
+                                </div>
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🌿 Livability Score</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:85%;background:#8b5cf6;"></div></div>
+                                    <span class="ssg-pct" style="color:#8b5cf6;">85%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LOW-RISE Panel -->
+                        <div class="sug-panel" id="sug-low">
+                            <div class="sug-panel-inner">
+                                <div class="sug-col sug-benefits">
+                                    <div class="sug-col-header">
+                                        <i data-lucide="check-circle-2"></i>
+                                        <span>Advantages</span>
+                                    </div>
+                                    <ul class="sug-list">
+                                        <li>Lowest structural hazard &amp; best earthquake resilience</li>
+                                        <li>Zero elevator dependency — walkable &amp; resilient during power cuts</li>
+                                        <li>Preserves natural airflow, sunlight penetration &amp; lower ground temperature</li>
+                                        <li>Low capital barrier — cost-effective for individual landowners</li>
+                                        <li>Quick manual evacuation with minimal fire risk</li>
+                                        <li>Ideal for flood-sensitive peripheral zones near Buriganga &amp; Turag rivers</li>
+                                    </ul>
+                                </div>
+                                <div class="sug-divider"></div>
+                                <div class="sug-col sug-disadv">
+                                    <div class="sug-col-header disadv-header">
+                                        <i data-lucide="x-circle"></i>
+                                        <span>Disadvantages</span>
+                                    </div>
+                                    <ul class="sug-list">
+                                        <li>Severe land inefficiency — unsustainable use of scarce Dhaka land</li>
+                                        <li>High per-capita infrastructure cost (roads, drainage, water &amp; waste)</li>
+                                        <li>Economically unviable in high-value zones (Gulshan, Dhanmondi, Motijheel)</li>
+                                        <li>Forces horizontal expansion into protected wetlands &amp; flood-flow areas</li>
+                                        <li>Cannot meet Dhaka's growing housing &amp; commercial density demand</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sug-scores">
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🔥 Fire Safety Score</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:95%;background:#22c55e;"></div></div>
+                                    <span class="ssg-pct" style="color:#22c55e;">95%</span>
+                                </div>
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🏗️ Land Efficiency</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:20%;background:#3b82f6;"></div></div>
+                                    <span class="ssg-pct" style="color:#3b82f6;">20%</span>
+                                </div>
+                                <div class="sug-score-item">
+                                    <span class="ssg-label">🌿 Livability Score</span>
+                                    <div class="ssg-bar-track"><div class="ssg-bar-fill" style="width:70%;background:#8b5cf6;"></div></div>
+                                    <span class="ssg-pct" style="color:#8b5cf6;">70%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END SUGGESTION BOX -->
+
+                </div>
+            </div>
+
+            <!-- ========== PAGE: Upload Image ========== -->
+            <div class="page" id="page-upload">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="upload-cloud" class="hero-icon blue-icon"></i>
+                        <h2>Upload Aerial or Drone Image</h2>
+                        <p>Select a high-resolution aerial or drone image of Dhaka City to begin AI-powered building height analysis.</p>
+                    </div>
+                    <div class="upload-page-grid">
+                        <div class="result-card upload-big">
+                            <div class="upload-area large" id="drop-zone-2">
+                                <i data-lucide="cloud-upload" class="upload-icon large-icon"></i>
+                                <p id="upload-status-2">Drag and drop your image here</p>
+                                <button class="btn-primary btn-lg" onclick="document.getElementById('file-input').click()">
+                                    <i data-lucide="folder-open"></i> Browse Files
+                                </button>
+                                <span class="upload-hint">Supports: JPG, PNG, JPEG — Max size: 20MB</span>
+                            </div>
+                            <button class="btn-primary full-width" id="analyze-btn-2" style="margin-top:16px">
+                                <i data-lucide="cpu"></i> Run Analysis
+                            </button>
+                        </div>
+                        <div class="result-card" id="preview-card" style="display:none;">
+                            <div class="result-header"><i data-lucide="image" class="blue-icon"></i><h4>Preview</h4></div>
+                            <div class="result-image-wrapper"><img id="upload-preview" src="" alt="Preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PAGE: Building Detection ========== -->
+            <div class="page" id="page-detection">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="scan" class="hero-icon blue-icon"></i>
+                        <h2>Building Detection Results</h2>
+                        <p>YOLO AI model detects and labels each building by height class — High-rise, Medium-rise, and Low-rise.</p>
+                    </div>
+
+                    <!-- Smart City Advisory Panel (hidden until analysis runs) -->
+                    <div id="advisory-panel" class="advisory-panel" style="display:none;">
+                        <div class="advisory-inner">
+                            <div class="advisory-icon-wrap">
+                                <i data-lucide="map-pinned"></i>
+                            </div>
+                            <div class="advisory-body">
+                                <div class="advisory-top-row">
+                                    <span class="advisory-label">Smart City Advisory</span>
+                                    <span id="advisory-zone-badge" class="zone-badge"></span>
+                                </div>
+                                <div class="advisory-stats" id="advisory-stats"></div>
+                                <ul class="advisory-recs" id="advisory-recs"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="detection-no-result" class="empty-state">
+                        <i data-lucide="scan"></i>
+                        <h3>No Analysis Run Yet</h3>
+                        <p>Go to <strong>Upload Image</strong> or <strong>Dashboard</strong> to upload and analyze an image first.</p>
+                        <button class="btn-primary" onclick="navigateTo('upload')"><i data-lucide="upload-cloud"></i> Upload Image</button>
+                    </div>
+                    <div id="detection-result" style="display:none;">
+
+                        <!-- Full detection with all labels -->
+                        <div class="result-card" style="margin-bottom:24px;">
+                            <div class="result-header"><i data-lucide="scan" class="blue-icon"></i><h4>All Buildings — Full Detection</h4></div>
+                            <div class="detection-summary-bar">
+                                <div class="dsb-item">
+                                    <span class="dsb-dot" style="background:#1e1e1e;"></span>
+                                    <span>Total: <strong id="d-total">—</strong></span>
+                                </div>
+                                <div class="dsb-item">
+                                    <span class="dsb-dot" style="background:#ef4444;"></span>
+                                    <span>High-rise: <strong class="red-text" id="d-high">—</strong></span>
+                                </div>
+                                <div class="dsb-item">
+                                    <span class="dsb-dot" style="background:#eab308;"></span>
+                                    <span>Medium-rise: <strong class="yellow-text" id="d-mid">—</strong></span>
+                                </div>
+                                <div class="dsb-item">
+                                    <span class="dsb-dot" style="background:#22c55e;"></span>
+                                    <span>Low-rise: <strong class="green-text" id="d-low">—</strong></span>
+                                </div>
+                            </div>
+                            <div class="result-image-wrapper large-wrapper"><img id="detect-page-img" src="" alt="All Detected Buildings"></div>
+                            <button class="btn-download" onclick="downloadImage('detect-page-img','detected_all.jpg')"><i data-lucide="download"></i> Download</button>
+                        </div>
+
+                        <!-- Per-class panels -->
+                        <div class="class-panels-grid">
+
+                            <!-- High-rise -->
+                            <div class="result-card class-panel high-panel">
+                                <div class="class-panel-header" style="border-left:4px solid #ef4444;">
+                                    <div class="class-panel-badge" style="background:#ef4444;">HIGH</div>
+                                    <div>
+                                        <h4>High-rise Buildings</h4>
+                                        <span class="class-panel-sub">9+ Floors &nbsp;•&nbsp; Red overlay</span>
+                                    </div>
+                                    <span class="class-count-badge red-bg" id="panel-high-count">0</span>
+                                </div>
+                                <div class="result-image-wrapper"><img id="high-only-img" src="" alt="High-rise buildings"></div>
+                                <button class="btn-download" onclick="downloadImage('high-only-img','high_rise_buildings.jpg')"><i data-lucide="download"></i> Download</button>
+                            </div>
+
+                            <!-- Medium-rise -->
+                            <div class="result-card class-panel medium-panel">
+                                <div class="class-panel-header" style="border-left:4px solid #eab308;">
+                                    <div class="class-panel-badge" style="background:#eab308;">MED</div>
+                                    <div>
+                                        <h4>Medium-rise Buildings</h4>
+                                        <span class="class-panel-sub">4–8 Floors &nbsp;•&nbsp; Yellow overlay</span>
+                                    </div>
+                                    <span class="class-count-badge yellow-bg" id="panel-mid-count">0</span>
+                                </div>
+                                <div class="result-image-wrapper"><img id="medium-only-img" src="" alt="Medium-rise buildings"></div>
+                                <button class="btn-download" onclick="downloadImage('medium-only-img','medium_rise_buildings.jpg')"><i data-lucide="download"></i> Download</button>
+                            </div>
+
+                            <!-- Low-rise -->
+                            <div class="result-card class-panel low-panel">
+                                <div class="class-panel-header" style="border-left:4px solid #22c55e;">
+                                    <div class="class-panel-badge" style="background:#22c55e;">LOW</div>
+                                    <div>
+                                        <h4>Low-rise Buildings</h4>
+                                        <span class="class-panel-sub">1–3 Floors &nbsp;•&nbsp; Green overlay</span>
+                                    </div>
+                                    <span class="class-count-badge green-bg" id="panel-low-count">0</span>
+                                </div>
+                                <div class="result-image-wrapper"><img id="low-only-img" src="" alt="Low-rise buildings"></div>
+                                <button class="btn-download" onclick="downloadImage('low-only-img','low_rise_buildings.jpg')"><i data-lucide="download"></i> Download</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PAGE: Height Analysis ========== -->
+            <div class="page" id="page-analysis">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="bar-chart-2" class="hero-icon blue-icon"></i>
+                        <h2>Height Classification Analysis</h2>
+                        <p>Color-coded building classification with statistical breakdown.</p>
+                    </div>
+                    <div id="analysis-no-result" class="empty-state">
+                        <i data-lucide="bar-chart-2"></i>
+                        <h3>No Analysis Run Yet</h3>
+                        <p>Go to <strong>Upload Image</strong> to analyze an image first.</p>
+                        <button class="btn-primary" onclick="navigateTo('upload')"><i data-lucide="upload-cloud"></i> Upload Image</button>
+                    </div>
+                    <div id="analysis-result" style="display:none;">
+                        <div class="analysis-grid">
+                            <div class="result-card">
+                                <div class="result-header"><i data-lucide="bar-chart" class="blue-icon"></i><h4>Height Classification Map</h4></div>
+                                <div class="result-image-wrapper large-wrapper"><img id="analysis-page-img" src="" alt="Classification"></div>
+                                <div class="legend-inline">
+                                    <div class="legend-item"><div class="legend-color" style="background:#22c55e"></div><span>Low-rise (1-4F)</span></div>
+                                    <div class="legend-item"><div class="legend-color" style="background:#eab308"></div><span>Mid-rise (5-12F)</span></div>
+                                    <div class="legend-item"><div class="legend-color" style="background:#ef4444"></div><span>High-rise (13+F)</span></div>
+                                </div>
+                                <button class="btn-download" onclick="downloadImage('analysis-page-img','classified.jpg')"><i data-lucide="download"></i> Download Image</button>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:24px;">
+                                <div class="result-card">
+                                    <div class="result-header"><i data-lucide="pie-chart" class="blue-icon"></i><h4>Distribution</h4></div>
+                                    <canvas id="pieChart" style="max-height:220px;"></canvas>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-header"><i data-lucide="bar-chart-2" class="blue-icon"></i><h4>Building Counts</h4></div>
+                                    <canvas id="barChart" style="max-height:220px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PAGE: Dhaka Map ========== -->
+            <div class="page" id="page-map">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="map" class="hero-icon blue-icon"></i>
+                        <h2>Dhaka City Map</h2>
+                        <p>Geographical overview of Dhaka City, Bangladesh.</p>
+                    </div>
+                    <div class="result-card" style="overflow:hidden; padding:0;">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117964.80905579588!2d90.34933!3d23.7644025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1690000000000"
+                            width="100%" height="520"
+                            style="border:0; display:block;"
+                            allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-info-grid">
+                        <div class="result-card map-info-card">
+                            <i data-lucide="map-pin" class="blue-icon"></i>
+                            <div><strong>Location</strong><p>Dhaka, Bangladesh</p></div>
+                        </div>
+                        <div class="result-card map-info-card">
+                            <i data-lucide="globe" class="blue-icon"></i>
+                            <div><strong>Coordinates</strong><p>23.8103° N, 90.4125° E</p></div>
+                        </div>
+                        <div class="result-card map-info-card">
+                            <i data-lucide="building" class="blue-icon"></i>
+                            <div><strong>Area</strong><p>306.38 km²</p></div>
+                        </div>
+                        <div class="result-card map-info-card">
+                            <i data-lucide="users" class="blue-icon"></i>
+                            <div><strong>Population</strong><p>~21 Million</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PAGE: Reports ========== -->
+            <div class="page" id="page-reports">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="file-text" class="hero-icon blue-icon"></i>
+                        <h2>Analysis Reports</h2>
+                        <p>Detailed statistical report from the last building height analysis.</p>
+                    </div>
+                    <div id="report-placeholder" class="empty-state">
+                        <i data-lucide="file-text"></i>
+                        <h3>No Report Available</h3>
+                        <p>Run an analysis from the <strong>Dashboard</strong> or <strong>Upload Image</strong> page to generate a report.</p>
+                        <button class="btn-primary" onclick="navigateTo('upload')"><i data-lucide="upload-cloud"></i> Upload Image</button>
+                    </div>
+                    <div id="report-content" style="display:none;">
+                        <div class="report-header-row">
+                            <h3>Last Analysis Report</h3>
+                            <div style="display:flex;gap:10px;align-items:center;">
+                                <button class="btn-primary" onclick="downloadReport()"><i data-lucide="download"></i> Download CSV</button>
+                                <button class="btn-primary" onclick="window.print()" style="background:#0f172a;"><i data-lucide="printer"></i> Print / Export</button>
+                            </div>
+                        </div>
+                        <div class="report-layout">
+                            <div class="result-card">
+                                <table class="report-table">
+                                    <thead><tr><th>Category</th><th>Count</th><th>Percentage</th></tr></thead>
+                                    <tbody id="report-table-body"></tbody>
+                                </table>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-header"><i data-lucide="pie-chart" class="blue-icon"></i><h4>Distribution Chart</h4></div>
+                                <canvas id="reportPieChart" style="max-height:260px;"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Smart City Policy Brief (hidden until analysis runs) -->
+                        <div id="policy-brief" class="policy-brief" style="display:none;">
+                            <div class="policy-brief-header">
+                                <div class="policy-brief-title-row">
+                                    <i data-lucide="scroll-text" class="policy-icon"></i>
+                                    <div>
+                                        <h3>Smart City Policy Brief</h3>
+                                        <p>Auto-generated from last analysis · Dhaka Building Height Survey</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="policy-brief-body" class="policy-brief-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PAGE: About Project ========== -->
+            <div class="page" id="page-about">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="info" class="hero-icon blue-icon"></i>
+                        <h2>About This Project</h2>
+                        <p>Dhaka City Building Height Analysis using Deep Learning</p>
+                    </div>
+                    <div class="about-grid">
+                        <div class="result-card about-card">
+                            <div class="about-icon-wrap blue"><i data-lucide="cpu"></i></div>
+                            <h4>AI Technology</h4>
+                            <p>Uses YOLOv8 (You Only Look Once) deep learning model for real-time building instance segmentation and height classification.</p>
+                        </div>
+                        <div class="result-card about-card">
+                            <div class="about-icon-wrap green"><i data-lucide="layers"></i></div>
+                            <h4>Classification</h4>
+                            <p>Buildings are classified into three categories: Low-rise (1-4 floors), Mid-rise (5-12 floors), and High-rise (13+ floors).</p>
+                        </div>
+                        <div class="result-card about-card">
+                            <div class="about-icon-wrap yellow"><i data-lucide="database"></i></div>
+                            <h4>Dataset</h4>
+                            <p>Trained on a custom dataset of annotated aerial and drone images of Dhaka City using YOLO segmentation format.</p>
+                        </div>
+                        <div class="result-card about-card">
+                            <div class="about-icon-wrap red"><i data-lucide="target"></i></div>
+                            <h4>Objective</h4>
+                            <p>To assist urban planners, architects, and researchers in understanding Dhaka's building density and height distribution.</p>
+                        </div>
+                    </div>
+                    <div class="result-card" style="margin-top:24px; padding:28px;">
+                        <h3 style="font-weight:700; margin-bottom:16px; font-size:17px;">Technology Stack</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python 3.14</span>
+                            <span class="tech-tag">YOLOv8 (Ultralytics)</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">HTML / CSS / JavaScript</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Lucide Icons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PAGE: Urban Insights & Guidance ========== -->
+            <div class="page" id="page-urban-insights">
+                <div class="content-wrapper">
+                    <div class="page-hero">
+                        <i data-lucide="lightbulb" class="hero-icon blue-icon"></i>
+                        <h2>Urban Insights &amp; Guidance</h2>
+                        <p>Evidence-based analysis of building typologies and smart urban planning recommendations for Dhaka City.</p>
+                    </div>
+
+                    <!-- ---- Height Comparison Cards ---- -->
+                    <h3 class="section-heading"><i data-lucide="layers"></i> Height Comparison</h3>
+                    <div class="insight-cards-grid">
+
+                        <!-- Low-rise Card -->
+                        <div class="insight-card">
+                            <div class="insight-card-header green-header">
+                                <span class="height-badge green-badge">LOW-RISE</span>
+                                <span class="floor-range">1 – 4 Floors</span>
+                            </div>
+                            <div class="insight-card-body">
+                                <div class="tab-toggles">
+                                    <button class="tab-btn active" data-card="low" data-tab="benefits">Benefits</button>
+                                    <button class="tab-btn" data-card="low" data-tab="disadvantages">Disadvantages</button>
+                                </div>
+                                <ul class="insight-list active" id="low-benefits">
+                                    <li>Lowest structural hazard &amp; earthquake safety</li>
+                                    <li>Zero elevator dependency — fully walkable</li>
+                                    <li>Resilient during power cuts &amp; emergencies</li>
+                                    <li>Preserves natural airflow &amp; sunlight corridors</li>
+                                    <li>Low capital barrier for individual landowners</li>
+                                    <li>Quick manual evacuation — high fire safety</li>
+                                </ul>
+                                <ul class="insight-list" id="low-disadvantages">
+                                    <li>Severe land inefficiency on scarce Dhaka land</li>
+                                    <li>High per-capita infrastructure cost (roads, drainage)</li>
+                                    <li>Economically unviable in Gulshan, Dhanmondi zones</li>
+                                    <li>Forces horizontal expansion into flood-flow zones</li>
+                                    <li>High municipal waste collection cost per resident</li>
+                                </ul>
+                                <div class="insight-meta">
+                                    <div class="fire-safety-row">
+                                        <span class="fire-label"><i data-lucide="flame"></i> Fire Safety Score</span>
+                                        <span class="fire-pct green-text">95%</span>
+                                    </div>
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill green-fill" style="width:95%"></div>
+                                    </div>
+                                    <div class="insight-badges">
+                                        <span class="ibadge ibadge-green">✓ DAP Compliant</span>
+                                        <span class="ibadge ibadge-blue">Low Infrastructure Demand</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mid-rise Card -->
+                        <div class="insight-card">
+                            <div class="insight-card-header yellow-header">
+                                <span class="height-badge yellow-badge">MID-RISE</span>
+                                <span class="floor-range">4 – 8 Floors</span>
+                            </div>
+                            <div class="insight-card-body">
+                                <div class="tab-toggles">
+                                    <button class="tab-btn active" data-card="mid" data-tab="benefits">Benefits</button>
+                                    <button class="tab-btn" data-card="mid" data-tab="disadvantages">Disadvantages</button>
+                                </div>
+                                <ul class="insight-list active" id="mid-benefits">
+                                    <li>Optimal balance of density &amp; manageability</li>
+                                    <li>Fully within Fire Service ladder reach</li>
+                                    <li>Affordable concrete frame construction</li>
+                                    <li>Fosters social cohesion &amp; neighborhood identity</li>
+                                    <li>DAP compliant for 20–30 ft road widths</li>
+                                    <li>Suitable for mixed residential-commercial use</li>
+                                </ul>
+                                <ul class="insight-list" id="mid-disadvantages">
+                                    <li>Urban sprawl pressure if unchecked</li>
+                                    <li>Unplanned clustering eliminates sunlight &amp; ventilation</li>
+                                    <li>Elevator dependency &amp; parking bottlenecks on narrow plots</li>
+                                    <li>Insufficient alone to meet Dhaka's 20M+ housing demand</li>
+                                    <li>Requires careful road-width planning to avoid gridlock</li>
+                                </ul>
+                                <div class="insight-meta">
+                                    <div class="fire-safety-row">
+                                        <span class="fire-label"><i data-lucide="flame"></i> Fire Safety Score</span>
+                                        <span class="fire-pct yellow-text">75%</span>
+                                    </div>
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill yellow-fill" style="width:75%"></div>
+                                    </div>
+                                    <div class="insight-badges">
+                                        <span class="ibadge ibadge-green">✓ DAP Compliant</span>
+                                        <span class="ibadge ibadge-yellow">Moderate Infrastructure Demand</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- High-rise Card -->
+                        <div class="insight-card">
+                            <div class="insight-card-header red-header">
+                                <span class="height-badge red-badge">HIGH-RISE</span>
+                                <span class="floor-range">9+ Floors</span>
+                            </div>
+                            <div class="insight-card-body">
+                                <div class="tab-toggles">
+                                    <button class="tab-btn active" data-card="high" data-tab="benefits">Benefits</button>
+                                    <button class="tab-btn" data-card="high" data-tab="disadvantages">Disadvantages</button>
+                                </div>
+                                <ul class="insight-list active" id="high-benefits">
+                                    <li>Maximizes scarce land with high population capacity</li>
+                                    <li>Enables open ground space, parks &amp; setbacks</li>
+                                    <li>Ideal for Transit-Oriented Development near MRT stations</li>
+                                    <li>Economies of scale: centralized amenities, solar microgrids</li>
+                                    <li>Supports Smart Dhaka 2035 vertical growth vision</li>
+                                    <li>Frees horizontal land for green buffer zones</li>
+                                </ul>
+                                <ul class="insight-list" id="high-disadvantages">
+                                    <li>High seismic/liquefaction risk on Dhaka's alluvial floodplains</li>
+                                    <li>Fire Service skylifts reach max ~20 floors only</li>
+                                    <li>Narrow Dhaka roads (&lt;20ft) block emergency vehicle access</li>
+                                    <li>Overburdened WASA water, gas &amp; sewage utilities</li>
+                                    <li>Creates Urban Heat Island &amp; microclimate wind corridors</li>
+                                    <li>Requires expensive deep piling &amp; BNBC-2020 compliance</li>
+                                </ul>
+                                <div class="insight-meta">
+                                    <div class="fire-safety-row">
+                                        <span class="fire-label"><i data-lucide="flame"></i> Fire Safety Score</span>
+                                        <span class="fire-pct red-text">40%</span>
+                                    </div>
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill red-fill" style="width:40%"></div>
+                                    </div>
+                                    <div class="insight-badges">
+                                        <span class="ibadge ibadge-red">⚠ Conditional DAP</span>
+                                        <span class="ibadge ibadge-red">High Infrastructure Demand</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ---- Radar Chart ---- -->
+                    <h3 class="section-heading" style="margin-top:40px;"><i data-lucide="radar"></i> Typology Comparison Radar</h3>
+                    <div class="result-card radar-card">
+                        <div class="result-header">
+                            <i data-lucide="activity" class="blue-icon"></i>
+                            <h4>Performance Across 5 Urban Dimensions</h4>
+                        </div>
+                        <div class="radar-chart-wrap">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                        <div class="radar-legend">
+                            <span class="radar-legend-item"><span class="rl-dot" style="background:#22c55e;"></span>Low-rise</span>
+                            <span class="radar-legend-item"><span class="rl-dot" style="background:#eab308;"></span>Mid-rise</span>
+                            <span class="radar-legend-item"><span class="rl-dot" style="background:#ef4444;"></span>High-rise</span>
+                        </div>
+                    </div>
+
+                    <!-- ---- Smart Dhaka 2035 Roadmap Accordion ---- -->
+                    <h3 class="section-heading" style="margin-top:40px;"><i data-lucide="map-pinned"></i> Smart Dhaka 2035 Roadmap</h3>
+                    <div class="roadmap-accordion">
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title-row">
+                                    <div class="accordion-icon-wrap blue-wrap"><i data-lucide="train-front"></i></div>
+                                    <span>Transit-Oriented Development (TOD) Zoning</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="accordion-chevron"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>High-rise (15–30+ floors) strictly incentivized within 500m radius of MRT Line 6, Line 1, and Line 5 stations. Mid-rise (5–8 floors) as buffer zones connecting residential sectors. Low-rise zones preserved near peripheral rivers (Buriganga, Turag, Balu, Shitalakshya) and retention wetlands.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title-row">
+                                    <div class="accordion-icon-wrap green-wrap"><i data-lucide="droplets"></i></div>
+                                    <span>Sponge City / Blue-Green Integration</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="accordion-chevron"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>Every high-rise and mid-rise development must implement rainwater harvesting and permeable ground paving. Protect and restore Dhaka's 43 historical khals (canals) as natural cooling corridors. Ground permeability of minimum 25% mandated for all new large developments.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title-row">
+                                    <div class="accordion-icon-wrap red-wrap"><i data-lucide="shield-alert"></i></div>
+                                    <span>Smart Infrastructure &amp; Disaster Early Warning</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="accordion-chevron"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>High-rises must integrate automatic gas and electric cut-off valves triggered by seismic P-wave detectors. Mandatory soil liquefaction testing (Micro-Zonation Audits) before RAJUK high-rise permits in reclamation zones. City-wide smart sensor network for real-time structural health monitoring.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title-row">
+                                    <div class="accordion-icon-wrap purple-wrap"><i data-lucide="cpu"></i></div>
+                                    <span>Digital Twin &amp; AI-Driven Building Regulation</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="accordion-chevron"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>Real-time monitoring using drone/satellite imagery and computer vision to detect unauthorized vertical expansions without manual RAJUK field inspection. AI-powered permit processing with instant cross-check against DAP 2022–2035 zoning regulations. Blockchain-based building permit ledger for transparent governance.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title-row">
+                                    <div class="accordion-icon-wrap teal-wrap"><i data-lucide="leaf"></i></div>
+                                    <span>Climate-Resilient Architecture Standards</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="accordion-chevron"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>Mandatory green roofs or solar panels on all buildings above 5 floors. Building envelopes must achieve minimum 3-star GRIHA rating by 2030. Passive cooling design (natural cross-ventilation corridors) enforced in all new mid-rise clusters in Mirpur, Mohammadpur, and Rayer Bazar.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-toolbar">
+            <button id="zoom-out-btn" class="modal-btn" title="Zoom Out (-)">−</button>
+            <span id="zoom-level" class="zoom-level">100%</span>
+            <button id="zoom-in-btn" class="modal-btn" title="Zoom In (+)">+</button>
+            <button id="zoom-reset-btn" class="modal-btn" title="Reset Zoom">⟳</button>
+            <span class="modal-hint">Scroll to zoom • ESC to close</span>
+            <span class="close-modal" id="close-modal-btn">&times;</span>
+        </div>
+        <div class="modal-image-area">
+            <img class="modal-content" id="modal-img">
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

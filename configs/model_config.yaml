@@ -1,0 +1,54 @@
+# ============================================================
+# Model Configuration
+# ============================================================
+
+model:
+  name: "unet_resnet50"          # Options: unet_resnet50, swin_transformer, ensemble
+  encoder: "resnet50"
+  encoder_weights: "imagenet"
+  in_channels: 12                 # Sentinel-2 bands
+  output_channels: 1              # Height (regression)
+  activation: null                # Regression: no activation on output
+
+unet:
+  decoder_channels: [256, 128, 64, 32, 16]
+  decoder_use_batchnorm: true
+  dropout: 0.2
+
+swin_transformer:
+  img_size: 256
+  patch_size: 4
+  embed_dim: 96
+  depths: [2, 2, 6, 2]
+  num_heads: [3, 6, 12, 24]
+  window_size: 8
+  drop_rate: 0.1
+  attn_drop_rate: 0.1
+
+ensemble:
+  models: ["unet_resnet50", "swin_transformer"]
+  weights: [0.6, 0.4]
+
+# Input configuration
+input:
+  patch_size: 256
+  stride: 128                     # Overlap for sliding window
+  bands:
+    - B02  # Blue
+    - B03  # Green
+    - B04  # Red
+    - B05  # Red Edge 1
+    - B06  # Red Edge 2
+    - B07  # Red Edge 3
+    - B08  # NIR
+    - B8A  # Narrow NIR
+    - B09  # Water Vapour
+    - B11  # SWIR 1
+    - B12  # SWIR 2
+    - NDVI # Derived
+
+# Output configuration
+output:
+  min_height: 0.0                 # Ground
+  max_height: 200.0               # ~60-floor max in Dhaka
+  no_data_value: -9999

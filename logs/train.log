@@ -1,0 +1,501 @@
+2026-07-24 01:49:03,395 | WARNING  | matplotlib.font_manager | Matplotlib is building the font cache; this may take a moment.
+2026-07-24 01:49:07,892 | INFO     | matplotlib.font_manager | generated new fontManager
+2026-07-24 01:56:07,953 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 01:56:07,954 | INFO     | train | ============================================================
+2026-07-24 01:56:07,954 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 01:56:07,955 | INFO     | train | ============================================================
+2026-07-24 01:56:07,955 | INFO     | train |   Mode:       synthetic
+2026-07-24 01:56:07,955 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 01:56:07,955 | INFO     | train |   Model:      unet
+2026-07-24 01:56:07,955 | INFO     | train |   Device:     cpu
+2026-07-24 01:56:07,955 | INFO     | train |   Epochs:     3
+2026-07-24 01:56:07,955 | INFO     | train |   Batch size: 4
+2026-07-24 01:56:07,955 | INFO     | train |   LR:         0.0001
+2026-07-24 01:56:07,955 | INFO     | train | ============================================================
+2026-07-24 01:56:07,955 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 01:56:07,999 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 200 samples (seed=42, task=classification)
+2026-07-24 01:56:07,999 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 50 samples (seed=42, task=classification)
+2026-07-24 01:56:07,999 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 50 samples (seed=42, task=classification)
+2026-07-24 01:56:07,999 | INFO     | train | Train: 200 | Val: 50 | Test: 50
+2026-07-24 01:56:09,751 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-24 01:56:10,116 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/smp-hub/resnet50.imagenet/resolve/00cb74e366966d59cd9a35af57e618af9f88efe9/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-24 01:56:10,118 | WARNING  | huggingface_hub.utils._http | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-24 01:56:10,271 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/smp-hub/resnet50.imagenet/00cb74e366966d59cd9a35af57e618af9f88efe9/config.json "HTTP/1.1 200 OK"
+2026-07-24 01:56:10,463 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/smp-hub/resnet50.imagenet/00cb74e366966d59cd9a35af57e618af9f88efe9/config.json "HTTP/1.1 200 OK"
+2026-07-24 01:56:10,886 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/smp-hub/resnet50.imagenet/resolve/00cb74e366966d59cd9a35af57e618af9f88efe9/model.safetensors "HTTP/1.1 302 Found"
+2026-07-24 01:57:16,543 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 01:57:16,544 | INFO     | train | ============================================================
+2026-07-24 01:57:16,544 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 01:57:16,545 | INFO     | train | ============================================================
+2026-07-24 01:57:16,545 | INFO     | train |   Mode:       synthetic
+2026-07-24 01:57:16,545 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 01:57:16,545 | INFO     | train |   Model:      unet
+2026-07-24 01:57:16,545 | INFO     | train |   Device:     cpu
+2026-07-24 01:57:16,545 | INFO     | train |   Epochs:     50
+2026-07-24 01:57:16,545 | INFO     | train |   Batch size: 8
+2026-07-24 01:57:16,546 | INFO     | train |   LR:         0.0001
+2026-07-24 01:57:16,546 | INFO     | train | ============================================================
+2026-07-24 01:57:16,546 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 01:57:16,555 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 01:57:16,555 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 01:57:16,556 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 01:57:16,556 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 01:57:18,324 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/smp-hub/resnet50.imagenet/resolve/00cb74e366966d59cd9a35af57e618af9f88efe9/model.safetensors "HTTP/1.1 302 Found"
+2026-07-24 01:57:19,244 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 01:57:19,247 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 01:57:19,255 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 01:57:19,363 | INFO     | train | Epoch 1/3
+2026-07-24 01:58:24,569 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 01:58:24,573 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 01:58:24,581 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 01:58:24,603 | INFO     | train | Epoch 1/50
+2026-07-24 12:13:00,839 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 12:13:00,840 | INFO     | train | ============================================================
+2026-07-24 12:13:00,841 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 12:13:00,843 | INFO     | train | ============================================================
+2026-07-24 12:13:00,843 | INFO     | train |   Mode:       synthetic
+2026-07-24 12:13:00,843 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 12:13:00,844 | INFO     | train |   Model:      unet
+2026-07-24 12:13:00,844 | INFO     | train |   Device:     cpu
+2026-07-24 12:13:00,844 | INFO     | train |   Epochs:     50
+2026-07-24 12:13:00,844 | INFO     | train |   Batch size: 8
+2026-07-24 12:13:00,845 | INFO     | train |   LR:         0.0001
+2026-07-24 12:13:00,845 | INFO     | train | ============================================================
+2026-07-24 12:13:00,845 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 12:13:00,863 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 12:13:00,863 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 12:13:00,864 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 12:13:00,864 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 12:13:02,534 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 12:13:02,536 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 12:13:02,554 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 12:13:02,557 | INFO     | train | 
+============================================================
+2026-07-24 12:13:02,558 | INFO     | train | Epoch 1/50
+2026-07-24 12:19:23,306 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 12:19:23,307 | INFO     | train | ============================================================
+2026-07-24 12:19:23,308 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 12:19:23,309 | INFO     | train | ============================================================
+2026-07-24 12:19:23,309 | INFO     | train |   Mode:       synthetic
+2026-07-24 12:19:23,309 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 12:19:23,309 | INFO     | train |   Model:      unet
+2026-07-24 12:19:23,310 | INFO     | train |   Device:     cpu
+2026-07-24 12:19:23,310 | INFO     | train |   Epochs:     50
+2026-07-24 12:19:23,311 | INFO     | train |   Batch size: 8
+2026-07-24 12:19:23,311 | INFO     | train |   LR:         0.0001
+2026-07-24 12:19:23,311 | INFO     | train | ============================================================
+2026-07-24 12:19:23,311 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 12:19:23,336 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 12:19:23,337 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 12:19:23,338 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 12:19:23,338 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 12:19:25,700 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 12:19:25,702 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 12:19:25,722 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 12:19:25,726 | INFO     | train | 
+============================================================
+2026-07-24 12:19:25,727 | INFO     | train | Epoch 1/50
+2026-07-24 12:26:55,238 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 12:26:55,240 | INFO     | train | ============================================================
+2026-07-24 12:26:55,240 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 12:26:55,241 | INFO     | train | ============================================================
+2026-07-24 12:26:55,241 | INFO     | train |   Mode:       synthetic
+2026-07-24 12:26:55,241 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 12:26:55,242 | INFO     | train |   Model:      unet
+2026-07-24 12:26:55,242 | INFO     | train |   Device:     cpu
+2026-07-24 12:26:55,242 | INFO     | train |   Epochs:     50
+2026-07-24 12:26:55,242 | INFO     | train |   Batch size: 8
+2026-07-24 12:26:55,243 | INFO     | train |   LR:         0.0001
+2026-07-24 12:26:55,243 | INFO     | train | ============================================================
+2026-07-24 12:26:55,243 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 12:26:55,321 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 12:26:55,322 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 12:26:55,323 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 12:26:55,323 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 12:26:57,388 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 12:26:57,394 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 12:26:57,401 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 12:26:57,407 | INFO     | train | 
+============================================================
+2026-07-24 12:26:57,407 | INFO     | train | Epoch 1/50
+2026-07-24 13:21:57,027 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:21:57,028 | INFO     | train | ============================================================
+2026-07-24 13:21:57,028 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:21:57,028 | INFO     | train | ============================================================
+2026-07-24 13:21:57,028 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:21:57,028 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:21:57,028 | INFO     | train |   Model:      unet
+2026-07-24 13:21:57,029 | INFO     | train |   Device:     cpu
+2026-07-24 13:21:57,030 | INFO     | train |   Epochs:     1
+2026-07-24 13:21:57,030 | INFO     | train |   Batch size: 8
+2026-07-24 13:21:57,030 | INFO     | train |   LR:         0.0001
+2026-07-24 13:21:57,030 | INFO     | train | ============================================================
+2026-07-24 13:21:57,030 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:21:57,061 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:21:57,063 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:21:57,064 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:21:57,064 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:21:59,219 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 13:21:59,222 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 13:21:59,232 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:21:59,236 | INFO     | train | 
+============================================================
+2026-07-24 13:21:59,237 | INFO     | train | Epoch 1/1
+2026-07-24 13:27:03,723 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:27:03,724 | INFO     | train | ============================================================
+2026-07-24 13:27:03,725 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:27:03,725 | INFO     | train | ============================================================
+2026-07-24 13:27:03,725 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:27:03,725 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:27:03,725 | INFO     | train |   Model:      unet
+2026-07-24 13:27:03,725 | INFO     | train |   Device:     cpu
+2026-07-24 13:27:03,725 | INFO     | train |   Epochs:     10
+2026-07-24 13:27:03,725 | INFO     | train |   Batch size: 8
+2026-07-24 13:27:03,725 | INFO     | train |   LR:         0.0001
+2026-07-24 13:27:03,726 | INFO     | train | ============================================================
+2026-07-24 13:27:03,726 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:27:03,741 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:27:03,742 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:27:03,742 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:27:03,743 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:27:05,376 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 13:27:05,378 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 13:27:05,388 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:27:05,391 | INFO     | train | 
+============================================================
+2026-07-24 13:27:05,392 | INFO     | train | Epoch 1/10
+2026-07-24 13:29:33,406 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:29:33,407 | INFO     | train | ============================================================
+2026-07-24 13:29:33,407 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:29:33,407 | INFO     | train | ============================================================
+2026-07-24 13:29:33,407 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:29:33,407 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:29:33,407 | INFO     | train |   Model:      yolov9
+2026-07-24 13:29:33,408 | INFO     | train |   Device:     cpu
+2026-07-24 13:29:33,408 | INFO     | train |   Epochs:     10
+2026-07-24 13:29:33,408 | INFO     | train |   Batch size: 8
+2026-07-24 13:29:33,408 | INFO     | train |   LR:         0.0001
+2026-07-24 13:29:33,408 | INFO     | train | ============================================================
+2026-07-24 13:29:33,408 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:29:33,423 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:29:33,424 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:29:33,424 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:29:33,424 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:29:33,617 | INFO     | train | Model: YOLOv9 (GELAN Architecture) | in_channels=17 | task=classification
+2026-07-24 13:29:33,619 | INFO     | train | Trainable parameters: 9,692,964
+2026-07-24 13:29:33,628 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:29:33,630 | INFO     | train | 
+============================================================
+2026-07-24 13:29:33,631 | INFO     | train | Epoch 1/10
+2026-07-24 13:30:27,650 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:30:27,651 | INFO     | train | ============================================================
+2026-07-24 13:30:27,651 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:30:27,651 | INFO     | train | ============================================================
+2026-07-24 13:30:27,651 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:30:27,651 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:30:27,651 | INFO     | train |   Model:      yolov9
+2026-07-24 13:30:27,652 | INFO     | train |   Device:     cpu
+2026-07-24 13:30:27,652 | INFO     | train |   Epochs:     10
+2026-07-24 13:30:27,652 | INFO     | train |   Batch size: 8
+2026-07-24 13:30:27,652 | INFO     | train |   LR:         0.0001
+2026-07-24 13:30:27,652 | INFO     | train | ============================================================
+2026-07-24 13:30:27,652 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:30:27,663 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:30:27,663 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:30:27,664 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:30:27,664 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:30:27,814 | INFO     | train | Model: YOLOv9 (GELAN Architecture) | in_channels=17 | task=classification
+2026-07-24 13:30:27,818 | INFO     | train | Trainable parameters: 9,840,420
+2026-07-24 13:30:27,823 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:30:27,825 | INFO     | train | 
+============================================================
+2026-07-24 13:30:27,825 | INFO     | train | Epoch 1/10
+2026-07-24 13:38:10,641 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:38:10,644 | INFO     | train | ============================================================
+2026-07-24 13:38:10,645 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:38:10,646 | INFO     | train | ============================================================
+2026-07-24 13:38:10,646 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:38:10,646 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:38:10,646 | INFO     | train |   Model:      unetpp
+2026-07-24 13:38:10,646 | INFO     | train |   Device:     cpu
+2026-07-24 13:38:10,668 | INFO     | train |   Epochs:     10
+2026-07-24 13:38:10,668 | INFO     | train |   Batch size: 8
+2026-07-24 13:38:10,669 | INFO     | train |   LR:         0.0001
+2026-07-24 13:38:10,669 | INFO     | train | ============================================================
+2026-07-24 13:38:10,670 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:38:10,688 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:38:10,689 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:38:10,690 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:38:10,690 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:38:13,876 | INFO     | train | Model: UNet++-resnet50 | in_channels=17 | task=classification
+2026-07-24 13:38:13,888 | INFO     | train | Trainable parameters: 49,030,084
+2026-07-24 13:38:13,902 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:38:13,931 | INFO     | train | 
+============================================================
+2026-07-24 13:38:13,932 | INFO     | train | Epoch 1/10
+2026-07-24 13:39:45,015 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:39:45,019 | INFO     | train | ============================================================
+2026-07-24 13:39:45,019 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:39:45,020 | INFO     | train | ============================================================
+2026-07-24 13:39:45,021 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:39:45,021 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:39:45,021 | INFO     | train |   Model:      yolov9
+2026-07-24 13:39:45,022 | INFO     | train |   Device:     cpu
+2026-07-24 13:39:45,022 | INFO     | train |   Epochs:     10
+2026-07-24 13:39:45,023 | INFO     | train |   Batch size: 8
+2026-07-24 13:39:45,023 | INFO     | train |   LR:         0.0001
+2026-07-24 13:39:45,023 | INFO     | train | ============================================================
+2026-07-24 13:39:45,023 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:39:45,044 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:39:45,047 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:39:45,051 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:39:45,056 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:39:45,463 | INFO     | train | Model: YOLOv9 (GELAN Architecture) | in_channels=17 | task=classification
+2026-07-24 13:39:45,468 | INFO     | train | Trainable parameters: 9,840,420
+2026-07-24 13:39:45,478 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:39:45,493 | INFO     | train | 
+============================================================
+2026-07-24 13:39:45,497 | INFO     | train | Epoch 1/10
+2026-07-24 13:45:35,763 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:45:35,765 | INFO     | train | ============================================================
+2026-07-24 13:45:35,765 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:45:35,766 | INFO     | train | ============================================================
+2026-07-24 13:45:35,766 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:45:35,766 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:45:35,766 | INFO     | train |   Model:      yolov8
+2026-07-24 13:45:35,766 | INFO     | train |   Device:     cpu
+2026-07-24 13:45:35,767 | INFO     | train |   Epochs:     10
+2026-07-24 13:45:35,768 | INFO     | train |   Batch size: 8
+2026-07-24 13:45:35,768 | INFO     | train |   LR:         0.0001
+2026-07-24 13:45:35,768 | INFO     | train | ============================================================
+2026-07-24 13:45:35,769 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:45:35,795 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:45:35,796 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:45:35,797 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:45:35,797 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:45:36,125 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 13:45:36,128 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 13:45:36,135 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:45:36,138 | INFO     | train | 
+============================================================
+2026-07-24 13:45:36,138 | INFO     | train | Epoch 1/10
+2026-07-24 13:50:01,884 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:50:01,889 | INFO     | train | ============================================================
+2026-07-24 13:50:01,890 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:50:01,891 | INFO     | train | ============================================================
+2026-07-24 13:50:01,891 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:50:01,892 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:50:01,892 | INFO     | train |   Model:      yolov8
+2026-07-24 13:50:01,892 | INFO     | train |   Device:     cpu
+2026-07-24 13:50:01,893 | INFO     | train |   Epochs:     10
+2026-07-24 13:50:01,893 | INFO     | train |   Batch size: 8
+2026-07-24 13:50:01,893 | INFO     | train |   LR:         0.0001
+2026-07-24 13:50:01,894 | INFO     | train | ============================================================
+2026-07-24 13:50:01,894 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:50:01,948 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:50:01,953 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:50:01,959 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:50:01,962 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:50:02,554 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 13:50:02,584 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 13:50:02,602 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:50:02,624 | INFO     | train | 
+============================================================
+2026-07-24 13:50:02,626 | INFO     | train | Epoch 1/10
+2026-07-24 13:58:48,784 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 13:58:48,786 | INFO     | train | ============================================================
+2026-07-24 13:58:48,786 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 13:58:48,787 | INFO     | train | ============================================================
+2026-07-24 13:58:48,787 | INFO     | train |   Mode:       synthetic
+2026-07-24 13:58:48,787 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 13:58:48,787 | INFO     | train |   Model:      yolov8
+2026-07-24 13:58:48,788 | INFO     | train |   Device:     cpu
+2026-07-24 13:58:48,788 | INFO     | train |   Epochs:     10
+2026-07-24 13:58:48,788 | INFO     | train |   Batch size: 8
+2026-07-24 13:58:48,788 | INFO     | train |   LR:         0.0001
+2026-07-24 13:58:48,788 | INFO     | train | ============================================================
+2026-07-24 13:58:48,788 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 13:58:48,805 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 13:58:48,806 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 13:58:48,806 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 13:58:48,806 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 13:58:49,074 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 13:58:49,076 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 13:58:49,084 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 13:58:49,088 | INFO     | train | 
+============================================================
+2026-07-24 13:58:49,088 | INFO     | train | Epoch 1/10
+2026-07-24 14:01:53,841 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 14:01:53,842 | INFO     | train | ============================================================
+2026-07-24 14:01:53,842 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 14:01:53,842 | INFO     | train | ============================================================
+2026-07-24 14:01:53,843 | INFO     | train |   Mode:       synthetic
+2026-07-24 14:01:53,843 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 14:01:53,843 | INFO     | train |   Model:      yolov8
+2026-07-24 14:01:53,843 | INFO     | train |   Device:     cpu
+2026-07-24 14:01:53,843 | INFO     | train |   Epochs:     10
+2026-07-24 14:01:53,843 | INFO     | train |   Batch size: 8
+2026-07-24 14:01:53,843 | INFO     | train |   LR:         0.0001
+2026-07-24 14:01:53,843 | INFO     | train | ============================================================
+2026-07-24 14:01:53,843 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 14:01:53,862 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 200 samples (seed=42, task=classification)
+2026-07-24 14:01:53,862 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 40 samples (seed=42, task=classification)
+2026-07-24 14:01:53,863 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 40 samples (seed=42, task=classification)
+2026-07-24 14:01:53,863 | INFO     | train | Train: 200 | Val: 40 | Test: 40
+2026-07-24 14:01:54,105 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 14:01:54,108 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 14:01:54,115 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 14:01:54,118 | INFO     | train | 
+============================================================
+2026-07-24 14:01:54,118 | INFO     | train | Epoch 1/10
+2026-07-24 14:02:22,445 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 14:02:22,447 | INFO     | train | ============================================================
+2026-07-24 14:02:22,447 | INFO     | train |   Dhaka Building Height Analysis — Training
+2026-07-24 14:02:22,448 | INFO     | train | ============================================================
+2026-07-24 14:02:22,448 | INFO     | train |   Mode:       synthetic
+2026-07-24 14:02:22,449 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 14:02:22,449 | INFO     | train |   Model:      yolov8
+2026-07-24 14:02:22,450 | INFO     | train |   Device:     cpu
+2026-07-24 14:02:22,450 | INFO     | train |   Epochs:     10
+2026-07-24 14:02:22,450 | INFO     | train |   Batch size: 8
+2026-07-24 14:02:22,450 | INFO     | train |   LR:         0.0001
+2026-07-24 14:02:22,451 | INFO     | train | ============================================================
+2026-07-24 14:02:22,451 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 14:02:22,467 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 200 samples (seed=42, task=classification)
+2026-07-24 14:02:22,468 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 40 samples (seed=42, task=classification)
+2026-07-24 14:02:22,468 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 40 samples (seed=42, task=classification)
+2026-07-24 14:02:22,469 | INFO     | train | Train: 200 | Val: 40 | Test: 40
+2026-07-24 14:02:22,709 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 14:02:22,711 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 14:02:22,745 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 14:02:22,753 | INFO     | train | 
+============================================================
+2026-07-24 14:02:22,756 | INFO     | train | Epoch 1/10
+2026-07-24 14:14:57,701 | INFO     | train |   Epoch   1 | lr=4.00e-05 | Train: loss=1.1037 RMSE=0.00m R²=0.000 | Val: loss=1.2062 RMSE=0.00m R²=0.000
+2026-07-24 14:14:59,139 | INFO     | train | 
+============================================================
+2026-07-24 14:14:59,139 | INFO     | train | Epoch 2/10
+2026-07-24 14:15:16,609 | INFO     | train |   Epoch   1 | lr=4.00e-05 | Train: loss=1.1037 RMSE=0.00m R²=0.000 | Val: loss=1.2062 RMSE=0.00m R²=0.000
+2026-07-24 14:15:17,385 | INFO     | train | 
+============================================================
+2026-07-24 14:15:17,385 | INFO     | train | Epoch 2/10
+2026-07-24 14:33:41,654 | INFO     | train |   Epoch   2 | lr=4.00e-05 | Train: loss=0.8687 RMSE=0.00m R²=0.000 | Val: loss=1.0614 RMSE=0.00m R²=0.000
+2026-07-24 14:33:41,990 | INFO     | train |   Epoch   2 | lr=4.00e-05 | Train: loss=0.8687 RMSE=0.00m R²=0.000 | Val: loss=1.0614 RMSE=0.00m R²=0.000
+2026-07-24 14:33:42,849 | INFO     | train | 
+============================================================
+2026-07-24 14:33:42,849 | INFO     | train | Epoch 3/10
+2026-07-24 14:33:43,108 | INFO     | train | 
+============================================================
+2026-07-24 14:33:43,108 | INFO     | train | Epoch 3/10
+2026-07-24 15:06:29,532 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 15:06:29,533 | INFO     | train | ============================================================
+2026-07-24 15:06:29,533 | INFO     | train |   Dhaka Building Height Analysis â€” Training
+2026-07-24 15:06:29,533 | INFO     | train | ============================================================
+2026-07-24 15:06:29,534 | INFO     | train |   Mode:       synthetic
+2026-07-24 15:06:29,534 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 15:06:29,534 | INFO     | train |   Model:      unet
+2026-07-24 15:06:29,534 | INFO     | train |   Device:     cpu
+2026-07-24 15:06:29,534 | INFO     | train |   Epochs:     10
+2026-07-24 15:06:29,534 | INFO     | train |   Batch size: 8
+2026-07-24 15:06:29,534 | INFO     | train |   LR:         0.0001
+2026-07-24 15:06:29,534 | INFO     | train | ============================================================
+2026-07-24 15:06:29,534 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 15:06:29,654 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 15:06:29,654 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 15:06:29,654 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 15:06:29,655 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 15:06:31,025 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 15:06:31,029 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 15:06:31,035 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 15:06:31,038 | INFO     | train | 
+============================================================
+2026-07-24 15:06:31,038 | INFO     | train | Epoch 1/10
+2026-07-24 15:06:39,327 | INFO     | train | Running on CPU. Training will be slower.
+2026-07-24 15:06:39,330 | INFO     | train | ============================================================
+2026-07-24 15:06:39,333 | INFO     | train |   Dhaka Building Height Analysis â€” Training
+2026-07-24 15:06:39,335 | INFO     | train | ============================================================
+2026-07-24 15:06:39,335 | INFO     | train |   Mode:       synthetic
+2026-07-24 15:06:39,335 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 15:06:39,336 | INFO     | train |   Model:      unet
+2026-07-24 15:06:39,336 | INFO     | train |   Device:     cpu
+2026-07-24 15:06:39,336 | INFO     | train |   Epochs:     10
+2026-07-24 15:06:39,337 | INFO     | train |   Batch size: 8
+2026-07-24 15:06:39,337 | INFO     | train |   LR:         0.0001
+2026-07-24 15:06:39,337 | INFO     | train | ============================================================
+2026-07-24 15:06:39,338 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 15:06:39,361 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 15:06:39,365 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 15:06:39,366 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 15:06:39,367 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 15:06:41,687 | INFO     | train | Model: UNet-resnet50 | in_channels=17 | task=classification
+2026-07-24 15:06:41,695 | INFO     | train | Trainable parameters: 32,565,592
+2026-07-24 15:06:41,706 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 15:06:41,713 | INFO     | train | 
+============================================================
+2026-07-24 15:06:41,713 | INFO     | train | Epoch 1/10
+2026-07-24 15:16:16,156 | INFO     | train | ============================================================
+2026-07-24 15:16:16,200 | INFO     | train |   Dhaka Building Height Analysis â€” Training
+2026-07-24 15:16:16,201 | INFO     | train | ============================================================
+2026-07-24 15:16:16,201 | INFO     | train |   Mode:       synthetic
+2026-07-24 15:16:16,202 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 15:16:16,202 | INFO     | train |   Model:      yolov8
+2026-07-24 15:16:16,203 | INFO     | train |   Device:     cpu
+2026-07-24 15:16:16,203 | INFO     | train |   Epochs:     10
+2026-07-24 15:16:16,204 | INFO     | train |   Batch size: 4
+2026-07-24 15:16:16,204 | INFO     | train |   LR:         0.0001
+2026-07-24 15:16:16,204 | INFO     | train | ============================================================
+2026-07-24 15:16:16,205 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 15:16:16,225 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 15:16:16,226 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 15:16:16,227 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 15:16:16,228 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 15:16:16,499 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 15:16:16,518 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 15:16:16,530 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 15:16:16,542 | INFO     | train | 
+============================================================
+2026-07-24 15:16:16,582 | INFO     | train | Epoch 1/10
+2026-07-24 15:18:38,866 | INFO     | train | ============================================================
+2026-07-24 15:18:38,867 | INFO     | train |   Dhaka Building Height Analysis â€” Training
+2026-07-24 15:18:38,868 | INFO     | train | ============================================================
+2026-07-24 15:18:38,868 | INFO     | train |   Mode:       synthetic
+2026-07-24 15:18:38,869 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 15:18:38,869 | INFO     | train |   Model:      yolov8
+2026-07-24 15:18:38,870 | INFO     | train |   Device:     cpu
+2026-07-24 15:18:38,870 | INFO     | train |   Epochs:     10
+2026-07-24 15:18:38,871 | INFO     | train |   Batch size: 4
+2026-07-24 15:18:38,871 | INFO     | train |   LR:         0.0001
+2026-07-24 15:18:38,872 | INFO     | train | ============================================================
+2026-07-24 15:18:38,872 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 15:18:38,894 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 2000 samples (seed=42, task=classification)
+2026-07-24 15:18:38,896 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 400 samples (seed=42, task=classification)
+2026-07-24 15:18:38,902 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 400 samples (seed=42, task=classification)
+2026-07-24 15:18:38,903 | INFO     | train | Train: 2000 | Val: 400 | Test: 400
+2026-07-24 15:18:39,135 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 15:18:39,137 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 15:18:39,143 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 15:18:39,147 | INFO     | train | 
+============================================================
+2026-07-24 15:18:39,147 | INFO     | train | Epoch 1/10
+2026-07-24 15:23:33,110 | INFO     | train | ============================================================
+2026-07-24 15:23:33,111 | INFO     | train |   Dhaka Building Height Analysis â€” Training
+2026-07-24 15:23:33,111 | INFO     | train | ============================================================
+2026-07-24 15:23:33,111 | INFO     | train |   Mode:       synthetic
+2026-07-24 15:23:33,111 | INFO     | train |   Task:       classification  (classification=Low/Med/High | regression=metres)
+2026-07-24 15:23:33,112 | INFO     | train |   Model:      yolov8
+2026-07-24 15:23:33,112 | INFO     | train |   Device:     cpu
+2026-07-24 15:23:33,112 | INFO     | train |   Epochs:     10
+2026-07-24 15:23:33,112 | INFO     | train |   Batch size: 4
+2026-07-24 15:23:33,112 | INFO     | train |   LR:         0.0001
+2026-07-24 15:23:33,112 | INFO     | train | ============================================================
+2026-07-24 15:23:33,112 | INFO     | train | Dataset: SyntheticDhakaDataset (no download required)
+2026-07-24 15:23:33,132 | INFO     | src.data.dataset | [SyntheticDhakaDataset/train] 200 samples (seed=42, task=classification)
+2026-07-24 15:23:33,133 | INFO     | src.data.dataset | [SyntheticDhakaDataset/val] 40 samples (seed=42, task=classification)
+2026-07-24 15:23:33,133 | INFO     | src.data.dataset | [SyntheticDhakaDataset/test] 40 samples (seed=42, task=classification)
+2026-07-24 15:23:33,133 | INFO     | train | Train: 200 | Val: 40 | Test: 40
+2026-07-24 15:23:33,380 | INFO     | train | Model: YOLOv8 (C2f + SPPF Architecture) | in_channels=17 | task=classification
+2026-07-24 15:23:33,382 | INFO     | train | Trainable parameters: 8,472,356
+2026-07-24 15:23:33,389 | INFO     | train | Loss: HeightClassificationLoss (CrossEntropy + Dice | 4 classes)
+2026-07-24 15:23:33,392 | INFO     | train | 
+============================================================
+2026-07-24 15:23:33,392 | INFO     | train | Epoch 1/10

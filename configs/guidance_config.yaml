@@ -1,0 +1,75 @@
+# ============================================================
+# Modish City Guidance Configuration
+# ============================================================
+
+guidance:
+  name: "Dhaka Modish City Guidance System"
+  version: "1.0.0"
+
+# Building height zoning rules (Bangladesh BNBC standards)
+height_zoning:
+  residential_low:
+    max_height_m: 12              # Up to 4 floors
+    max_floors: 4
+    min_setback_m: 1.5
+    far: 2.5                     # Floor Area Ratio
+    ground_coverage: 0.60
+  residential_medium:
+    max_height_m: 27
+    max_floors: 9
+    min_setback_m: 3.0
+    far: 3.5
+    ground_coverage: 0.55
+  residential_high:
+    max_height_m: 60
+    max_floors: 20
+    min_setback_m: 6.0
+    far: 4.5
+    ground_coverage: 0.50
+  commercial_mixed:
+    max_height_m: 90
+    max_floors: 30
+    min_setback_m: 6.0
+    far: 6.0
+    ground_coverage: 0.60
+  special_commercial:
+    max_height_m: 150
+    max_floors: 50
+    min_setback_m: 9.0
+    far: 8.0
+    ground_coverage: 0.55
+
+# Risk assessment thresholds
+risk:
+  seismic:
+    zone: "Zone II"              # Bangladesh seismic zone
+    pga: 0.15                    # Peak ground acceleration (g)
+    high_risk_height_m: 60       # Heights requiring special design
+  flood:
+    annual_flood_depth_m: 0.5
+    high_risk_zones: ["Old Dhaka", "Mirpur"]
+  structural:
+    overloading_height_factor: 1.2  # Heights exceeding zoning by this factor = risk
+  wind:
+    design_wind_speed_kmh: 260      # Cyclone design speed
+
+# Green space recommendations
+green_space:
+  min_coverage_pct: 20           # 20% of zone area
+  rooftop_garden_height_threshold_m: 10
+  park_radius_m: 500             # Max distance to nearest park
+
+# Population density
+density:
+  max_sustainable_per_km2: 45000
+  high_density_threshold_per_km2: 30000
+  recommended_per_km2: 20000
+
+# Report settings
+report:
+  output_format: ["pdf", "html"]
+  include_3d_map: true
+  include_risk_matrix: true
+  include_recommendations: true
+  language: "English"
+  logo_path: "./assets/logo.png"

@@ -1,0 +1,89 @@
+# ============================================================
+# Data Configuration
+# ============================================================
+
+# Study area — Dhaka City bounding box (WGS84)
+study_area:
+  name: "Dhaka City"
+  country: "Bangladesh"
+  crs: "EPSG:4326"
+  projection: "EPSG:32646"       # UTM Zone 46N for Bangladesh
+  bbox:
+    west: 90.2795
+    south: 23.6850
+    east: 90.5300
+    north: 23.9010
+
+# Administrative zones
+zones:
+  - name: "Gulshan"
+    bbox: [90.3978, 23.7700, 90.4310, 23.8010]
+    category: "high_rise_commercial"
+  - name: "Banani"
+    bbox: [90.3900, 23.7900, 90.4150, 23.8100]
+    category: "high_density_mixed"
+  - name: "Dhanmondi"
+    bbox: [90.3550, 23.7350, 90.3850, 23.7650]
+    category: "medium_residential"
+  - name: "Motijheel"
+    bbox: [90.4050, 23.7250, 90.4280, 23.7450]
+    category: "central_business"
+  - name: "Old Dhaka"
+    bbox: [90.3950, 23.7050, 90.4250, 23.7300]
+    category: "dense_heritage"
+  - name: "Mirpur"
+    bbox: [90.3400, 23.7850, 90.3900, 23.8350]
+    category: "residential_expanding"
+  - name: "Uttara"
+    bbox: [90.3500, 23.8600, 90.4100, 23.9000]
+    category: "planned_township"
+  - name: "Mohakhali"
+    bbox: [90.3950, 23.7750, 90.4200, 23.7950]
+    category: "mixed_commercial"
+
+# Sentinel-2 satellite data
+sentinel2:
+  collection: "COPERNICUS/S2_SR_HARMONIZED"
+  start_date: "2022-01-01"
+  end_date: "2023-12-31"
+  cloud_cover_max: 20            # % max cloud cover
+  bands:
+    - "B02"  # Blue (490nm)
+    - "B03"  # Green (560nm)
+    - "B04"  # Red (665nm)
+    - "B05"  # Red Edge 1 (705nm)
+    - "B06"  # Red Edge 2 (740nm)
+    - "B07"  # Red Edge 3 (783nm)
+    - "B08"  # NIR (842nm)
+    - "B8A"  # Narrow NIR (865nm)
+    - "B09"  # Water Vapour (940nm)
+    - "B11"  # SWIR 1 (1610nm)
+    - "B12"  # SWIR 2 (2190nm)
+  resolution: 10                  # meters
+  scale: 10000                    # GEE scale factor
+
+# DEM data
+dem:
+  collection: "USGS/SRTMGL1_003"
+  resolution: 30                  # meters (resampled to 10m)
+
+# OpenStreetMap
+osm:
+  tags:
+    building: true
+    height: true
+    levels: true
+  buffer_distance: 0              # meters around bbox
+
+# Patch configuration
+patches:
+  size: 256                       # pixels
+  stride: 128                     # 50% overlap
+  min_building_coverage: 0.05    # At least 5% building pixels
+  height_range: [0, 200]         # Valid height range (meters)
+
+# Ground truth
+ground_truth:
+  source: "ndsm"                  # nDSM = DSM - DEM
+  interpolation: "bilinear"
+  nodata: -9999

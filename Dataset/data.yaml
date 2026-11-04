@@ -1,0 +1,19 @@
+# ============================================================
+# Dhaka Building Detection — YOLO Dataset Configuration
+# Dataset: Drone/Aerial imagery of Dhaka City buildings
+# Labels: YOLO polygon format (Building footprints: Low/Medium/High)
+# ============================================================
+
+path: C:/Users/HP/Downloads/Dhaka-city-building-hight/Dhaka-city-building-hight/dhaka-height-analysis/Dataset
+train: train/images
+val: valid/images
+test: test/images
+
+# Classes — Building Height Categories
+nc: 3
+names:
+  0: low     # Low-rise  (1–3 floors)
+  1: medium  # Mid-rise  (4–8 floors)
+  2: high    # High-rise (9+ floors)
+
+description: "Dhaka City building height classification dataset from drone imagery"
